@@ -58,3 +58,7 @@
     cursor: pointer;
     margin-top: 0px;
 }
+
+h1 {
+    align-self: center;
+}
