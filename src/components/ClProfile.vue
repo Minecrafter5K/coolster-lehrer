@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Slider from './Slider.vue';
+import ClSlider from './ClSlider.vue';
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import Slider from './Slider.vue';
     <div class="p_light">
 
       <div class="p_light_line"></div>
-      <Slider />
+      <ClSlider />
     </div>
   </div>
 </template>
