@@ -1,20 +1,35 @@
 @import './base.css';
 
+.p_container {
+    overflow: hidden;
+}
+
+@media screen {
+    .profile {
+        margin-left: calc(50vw - 280px / 2);
+    }
+}
+
+@media screen and (min-width: calc(280px * 2 + 90px)) {
+    .profile {
+        margin-left: calc(50vw - 280px - 15px);
+    }
+}
+
 .p_light_background {
     height: 340px;
     width: 280px;
     background-color: var(--cl-light-green);
     border-radius: 25px;
 
-    margin-left: 30px;
     margin-right: 30px;
     margin-top: 18px;
 
     position: relative;
-    display: grid;
+    float: left;
 }
 
-.p_light {
+.p_dark {
     height: 120px;
     width: 280px;
     background-color: var(--cl-green);
@@ -32,31 +47,6 @@
 
     margin-left: calc(calc(280px - 204px) / 2);
     margin-top: 70px;
-}
-
-.slider-container {
-    width: 204px;
-    margin-left: calc(calc(280px - 204px) / 2);
-    position: relative;
-}
-
-.slider {
-    width: 100%;
-    -webkit-appearance: none;
-    background: var(--cl-light-blue);
-    height: 6px;
-    border-radius: 3px;
-    position: relative;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    background: var(--cl-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: 0px;
 }
 
 h1 {

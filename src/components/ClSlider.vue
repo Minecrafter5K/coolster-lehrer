@@ -26,6 +26,31 @@ const snapToClosest = (): void => {
   </div>
 </template>
 
-<style scoped>
 
+<style scoped>
+/* Slider CSS */
+.slider-container {
+  width: 204px;
+  margin-left: calc(calc(280px - 204px) / 2);
+  position: relative;
+}
+
+.slider {
+  width: 100%;
+  -webkit-appearance: none;
+  background: var(--cl-light-blue);
+  height: 6px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--cl-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 0;
+}
 </style>

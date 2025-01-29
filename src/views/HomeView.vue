@@ -5,7 +5,44 @@ import ClProfile from '@/components/ClProfile.vue'
 <template>
   <main>
     <h1>Was geht?</h1>
-    <ClProfile />
+    <div class="p_container">
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+      <ClProfile />
+    </div>
   </main>
 </template>
 
