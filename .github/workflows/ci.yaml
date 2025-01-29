@@ -54,7 +54,7 @@ jobs:
       - shell: bash
         run: npm install
 
-      - name: Format
+      - name: Typecheck
         run: npm run type-check
 
   test:
@@ -69,5 +69,5 @@ jobs:
       - shell: bash
         run: npm install
 
-      - name: Format
+      - name: Unit Tests
         run: npm run test:unit
