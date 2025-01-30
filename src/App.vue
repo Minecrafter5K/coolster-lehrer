@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import ClHeader from '@/components/ClHeader.vue'
 </script>
 
 <template>
   <header>
-    <p>titel</p>
+    <ClHeader />
   </header>
 
   <RouterView />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

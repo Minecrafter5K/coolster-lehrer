@@ -14,4 +14,42 @@ const props = defineProps(['name'])
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.p_light_background {
+  height: 340px;
+  width: 280px;
+  background-color: var(--cl-light-green);
+  border-radius: 25px;
+
+  position: relative;
+  float: left;
+}
+
+.p_dark {
+  height: 120px;
+  width: 280px;
+  background-color: var(--cl-green);
+  border-radius: 25px;
+
+  display: grid;
+  position: absolute;
+  bottom: 0;
+}
+
+.p_light_line {
+  position: absolute;
+  height: 1px;
+  width: 204px;
+  background-color: var(--cl-light-green);
+
+  margin-left: calc(calc(280px - 204px) / 2);
+  margin-top: 70px;
+}
+
+h2 {
+  align-self: center;
+  justify-self: center;
+  position: absolute;
+  margin-top: -50px;
+}
+</style>
