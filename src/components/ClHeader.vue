@@ -24,12 +24,12 @@
   font-weight: bold;
   font-size: 1.2rem;
 
-  width: 130px;
+  width: 145px;
   height: 30px;
   padding: 0;
   margin-bottom: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 
   border: none;
   border-radius: 15px;
