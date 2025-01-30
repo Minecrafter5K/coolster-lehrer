@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const sliderValue = ref<number>(2);
-const snapPoints: number[] = [0, 1, 2, 3, 4];
+const sliderValue = ref<number>(2)
+const snapPoints: number[] = [0, 1, 2, 3, 4]
 
 const snapToClosest = (): void => {
   const closest = snapPoints.reduce((prev, curr) =>
-    Math.abs(curr - sliderValue.value) < Math.abs(prev - sliderValue.value) ? curr : prev
-  );
-  sliderValue.value = closest;
-};
+    Math.abs(curr - sliderValue.value) < Math.abs(prev - sliderValue.value) ? curr : prev,
+  )
+  sliderValue.value = closest
+}
 </script>
 
 <template>
@@ -26,13 +26,13 @@ const snapToClosest = (): void => {
   </div>
 </template>
 
-
 <style scoped>
 /* Slider CSS */
 .slider-container {
   width: 204px;
   margin-left: calc(calc(280px - 204px) / 2);
-  position: relative;
+  position: absolute;
+  margin-top: 80px;
 }
 
 .slider {
