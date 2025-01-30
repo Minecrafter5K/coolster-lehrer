@@ -3,8 +3,12 @@
 <template>
   <div class="header">
     <div>
-      <button class="btn vote">Vote</button>
-      <button class="btn stats">Stats</button>
+      <router-link to="/">
+        <button class="btn vote">Vote</button>
+      </router-link>
+      <router-link to="/stats">
+        <button class="btn stats">Stats</button>
+      </router-link>
     </div>
     <h1 id="title">Coolster Lehrer</h1>
   </div>
