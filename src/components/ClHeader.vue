@@ -20,7 +20,7 @@
 
 .btn {
   background-color: var(--cl-light-blue);
-  color: black;
+  color: var(--cl-text);
   font-weight: bold;
   font-size: 1.2rem;
 
@@ -38,7 +38,7 @@
 
 #title {
   background-color: var(--cl-light-blue);
-  color: black;
+  color: var(--cl-text);
   font-size: 1.5rem;
   font-weight: bold;
 
