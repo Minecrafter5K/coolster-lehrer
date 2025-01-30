@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia'
 import { mande } from 'mande'
 import type { Lehrer } from '@/interfaces/Lehrer.ts'
-import { app, pinia } from '@/main.ts'
-
-app.use(pinia)
 
 const lehrer = mande('http://localhost:3001/lehrer')
 
