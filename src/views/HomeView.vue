@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ClProfile from '@/components/ClProfile.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
 
 const store = useLehrerStore()
