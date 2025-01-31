@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import type { LehrerWithScore } from '@/interfaces/Lehrer.ts'
 
-const props = defineProps<{lehrer: LehrerWithScore}>()
+const props = defineProps<{ lehrer: LehrerWithScore }>()
+
+const rank = 'rank-' + props.lehrer.rank
 </script>
 
 <template>
-  <div class="p_light_background">
+  <div class="p_light_background" v-bind:class="rank">
     <div class="p_dark">
-      <h2>{{props.lehrer.rank}}. {{ props.lehrer.name }}</h2>
+      <h2>{{ props.lehrer.name }}</h2>
       <div class="p_light_line"></div>
+      <h3>{{ props.lehrer.rank }}. Platz</h3>
     </div>
   </div>
 </template>
@@ -22,6 +25,9 @@ const props = defineProps<{lehrer: LehrerWithScore}>()
 
   position: relative;
   float: left;
+}
+.p_light_background.rank-1 {
+  background-color: var(--cl-blue);
 }
 
 .p_dark {
@@ -50,5 +56,12 @@ h2 {
   justify-self: center;
   position: absolute;
   margin-top: -50px;
+}
+
+h3 {
+  align-self: center;
+  justify-self: center;
+  position: absolute;
+  margin-top: 65px;
 }
 </style>
