@@ -1,12 +1,15 @@
 <script setup lang="ts">
-const props = defineProps(['lehrer'])
+import ClSlider from './ClSlider.vue'
+
+const props = defineProps(['name'])
 </script>
 
 <template>
   <div class="p_light_background">
     <div class="p_dark">
-      <h2>{{ props.lehrer.name }}</h2>
+      <h2>{{ props.name }}</h2>
       <div class="p_light_line"></div>
+      <ClSlider />
     </div>
   </div>
 </template>

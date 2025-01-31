@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ClProfile from '@/components/ClProfile.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
+import ClProfileSlider from '@/components/ClProfileSlider.vue'
 
 const store = useLehrerStore()
 store.getLehrer()
@@ -9,7 +9,7 @@ store.getLehrer()
 <template>
   <main>
     <div class="p_container">
-      <ClProfile v-for="lehrer in store.lehrerData" :key="lehrer.id" :name="lehrer.name" />
+      <ClProfileSlider v-for="lehrer in store.lehrerData" :key="lehrer.id" :name="lehrer.name" />
     </div>
   </main>
 </template>

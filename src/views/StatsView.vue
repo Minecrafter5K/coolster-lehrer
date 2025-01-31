@@ -8,9 +8,8 @@ store.getLehrer()
 
 <template>
   <main>
-    <p>statsview</p>
     <div class="p_container">
-      <ClProfile v-for="lehrer in store.lehrerData" :key="lehrer.id" :name="lehrer.name" />
+      <ClProfile v-for="lehrer in store.lehrerData" :key="lehrer.id" :lehrer="lehrer" />
     </div>
   </main>
 </template>
