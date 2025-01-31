@@ -12,15 +12,15 @@ describe('ClSlider Component', () => {
   it('has correct initial value', () => {
     const wrapper = mount(ClSlider)
     const slider = wrapper.find('input[type="range"]')
-    expect((slider.element as HTMLInputElement).value).toBe('2')
+    expect((slider.element as HTMLInputElement).value).toBe('0')
   })
 
   it('snaps to closest snap point when changed', async () => {
     const wrapper = mount(ClSlider)
     const slider = wrapper.find('input[type="range"]')
 
-    await slider.setValue('3')
-    expect((slider.element as HTMLInputElement).value).toBe('3')
+    await slider.setValue('-1')
+    expect((slider.element as HTMLInputElement).value).toBe('-1')
 
     await slider.setValue('1.8')
     expect((slider.element as HTMLInputElement).value).toBe('2')
