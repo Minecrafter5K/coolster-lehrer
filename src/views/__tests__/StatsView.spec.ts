@@ -1,8 +1,8 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import HomeView from '../HomeView.vue'
 import { createPinia, setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
+import StatsView from '@/views/StatsView.vue'
 
 describe('HelloWorld', () => {
   beforeEach(() => {
@@ -10,11 +10,11 @@ describe('HelloWorld', () => {
   })
 
   it('renders properly', () => {
-    const wrapper = mount(HomeView, {
+    const wrapper = mount(StatsView, {
       global: {
-        plugins: [createTestingPinia({createSpy: vi.fn})]
-      }
-    });
+        plugins: [createTestingPinia({ createSpy: vi.fn })],
+      },
+    })
     expect(wrapper).toBeDefined()
   })
 })
