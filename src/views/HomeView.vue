@@ -3,22 +3,24 @@ import { useLehrerStore } from '@/stores/lehrer.ts'
 import ClProfileSlider from '@/components/ClProfileSlider.vue'
 import type { Vote } from '@/interfaces/Vote.ts'
 import router from '@/router'
+import { computed } from 'vue'
 
 const store = useLehrerStore()
 store.getLehrer()
 
-const votes = store.lehrerData.map((lehrer) => ({
+const votes = computed(() => store.lehrerData.map((lehrer) => ({
   id: lehrer.id,
   name: lehrer.name,
   score: 0,
-}))
+})))
+
 function updateVoteValue(id: number, value: number) {
-  const index = votes.findIndex((vote) => vote.id === id)
-  votes[index].score = value
+  const index = votes.value.findIndex((vote) => vote.id === id)
+  votes.value[index].score = value
 }
 
 const submitVotes = () => {
-  const newVotes: Vote[] = votes
+  const newVotes: Vote[] = votes.value
     .filter((vote) => vote.score !== 0)
     .map((vote) => ({
       lehrerId: vote.id,
