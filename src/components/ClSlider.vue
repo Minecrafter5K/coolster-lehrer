@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const sliderValue = ref<number>(2)
-const snapPoints: number[] = [0, 1, 2, 3, 4]
+const props = defineProps<{ value: number }>()
+const emit = defineEmits<{
+  (e: 'update:value', value: number): void
+}>()
+
+const sliderValue = ref(props.value)
+const snapPoints: number[] = [-2, -1, 0, 1, 2]
 
 const snapToClosest = (): void => {
-  const closest = snapPoints.reduce((prev, curr) =>
+  sliderValue.value = snapPoints.reduce((prev, curr) =>
     Math.abs(curr - sliderValue.value) < Math.abs(prev - sliderValue.value) ? curr : prev,
   )
-  sliderValue.value = closest
+  emit('update:value', sliderValue.value)
 }
 </script>
 
@@ -16,8 +21,8 @@ const snapToClosest = (): void => {
   <div class="slider-container">
     <input
       type="range"
-      min="0"
-      max="4"
+      min="-2"
+      max="2"
       step="1"
       v-model="sliderValue"
       class="slider"
