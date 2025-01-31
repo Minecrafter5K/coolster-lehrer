@@ -9,7 +9,7 @@ store.getLehrer()
 <template>
   <main>
     <div class="p_container">
-      <ClProfileSlider v-for="lehrer in store.lehrerData" :key="lehrer.id" :name="lehrer.name" />
+      <ClProfileSlider v-for="lehrer in store.lehrerData" :key="lehrer.id" :lehrer="lehrer" />
     </div>
   </main>
 </template>

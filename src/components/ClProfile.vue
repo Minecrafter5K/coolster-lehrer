@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = defineProps(['lehrer'])
+import type { Lehrer } from '@/interfaces/Lehrer.ts'
+
+const props = defineProps<{lehrer: Lehrer}>()
 </script>
 
 <template>
