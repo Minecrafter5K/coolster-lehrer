@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Lehrer } from '@/interfaces/Lehrer.ts'
+import type { LehrerWithScore } from '@/interfaces/Lehrer.ts'
 
-const props = defineProps<{lehrer: Lehrer}>()
+const props = defineProps<{lehrer: LehrerWithScore}>()
 </script>
 
 <template>
   <div class="p_light_background">
     <div class="p_dark">
-      <h2>{{ props.lehrer.name }}</h2>
+      <h2>{{props.lehrer.rank}}. {{ props.lehrer.name }}</h2>
       <div class="p_light_line"></div>
     </div>
   </div>

@@ -7,4 +7,5 @@ export interface LehrerWithScore {
   id: number
   name: string
   score: number
+  rank: number
 }

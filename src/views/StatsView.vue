@@ -3,7 +3,7 @@ import ClProfile from '@/components/ClProfile.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
 
 const store = useLehrerStore()
-store.getLehrerRanking().then(() => console.log(store.lehrerRanking))
+store.getLehrerRanking()
 </script>
 
 <template>
