@@ -8,11 +8,13 @@ import { computed } from 'vue'
 const store = useLehrerStore()
 store.getLehrer()
 
-const votes = computed(() => store.lehrerData.map((lehrer) => ({
-  id: lehrer.id,
-  name: lehrer.name,
-  score: 0,
-})))
+const votes = computed(() =>
+  store.lehrerData.map((lehrer) => ({
+    id: lehrer.id,
+    name: lehrer.name,
+    score: 0,
+  })),
+)
 
 function updateVoteValue(id: number, value: number) {
   const index = votes.value.findIndex((vote) => vote.id === id)
@@ -42,7 +44,7 @@ const submitVotes = () => {
         @update:voteValue="($event) => updateVoteValue(lehrer.id, $event)"
       />
     </div>
-    <button @click="submitVotes">Submit Votes</button>
+    <button id="btn" @click="submitVotes">Submit</button>
   </main>
 </template>
 
@@ -55,5 +57,38 @@ const submitVotes = () => {
   flex-wrap: wrap;
 
   margin: 30px;
+}
+
+#btn {
+  background-color: var(--cl-light-blue);
+  color: var(--cl-text);
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  width: 145px;
+  height: 30px;
+  padding: 0;
+  margin-bottom: 40px;
+
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+@media (min-width: 650px) {
+  #btn {
+    padding: 0;
+    width: 130px;
+    height: 50px;
+    border-radius: 15px;
+
+    position: absolute;
+    left: 69px;
+  }
 }
 </style>
