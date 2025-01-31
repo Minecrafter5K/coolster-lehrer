@@ -3,13 +3,13 @@ import ClProfile from '@/components/ClProfile.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
 
 const store = useLehrerStore()
-store.getLehrer()
+store.getLehrerRanking().then(() => console.log(store.lehrerRanking))
 </script>
 
 <template>
   <main>
     <div class="p_container">
-      <ClProfile v-for="lehrer in store.lehrerData" :key="lehrer.id" :lehrer="lehrer" />
+      <ClProfile v-for="lehrer in store.lehrerRanking" :key="lehrer.id" :lehrer="lehrer" />
     </div>
   </main>
 </template>

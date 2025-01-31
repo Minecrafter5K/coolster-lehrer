@@ -1,5 +1,10 @@
 export interface Lehrer {
   id: number
   name: string
-  score?: number
+}
+
+export interface LehrerWithScore {
+  id: number
+  name: string
+  score: number
 }
