@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import ClProfile from '@/components/ClProfile.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const store = useLehrerStore()
-store.getLehrerRanking()
+store.getLehrerRanking(Number(route.params.abstimmungId))
 </script>
 
 <template>

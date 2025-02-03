@@ -2,11 +2,14 @@
 import { useLehrerStore } from '@/stores/lehrer.ts'
 import ClProfileSlider from '@/components/ClProfileSlider.vue'
 import type { Vote } from '@/interfaces/Vote.ts'
+import { computed, ref } from 'vue'
 import router from '@/router'
-import { computed } from 'vue'
 
 const store = useLehrerStore()
 store.getLehrer()
+store.getCurrentAbstimmungId()
+
+const loading = ref(false)
 
 const votes = computed(() =>
   store.lehrerData.map((lehrer) => ({
@@ -21,14 +24,18 @@ function updateVoteValue(id: number, value: number) {
   votes.value[index].score = value
 }
 
-const submitVotes = () => {
+const submitVotes = async () => {
   const newVotes: Vote[] = votes.value
     .filter((vote) => vote.score !== 0)
     .map((vote) => ({
       lehrerId: vote.id,
       vote: vote.score,
+      abstimmungId: store.currentAbstimmungId,
     }))
-  store.createVotes(newVotes)
+  console.log('newVotes')
+  await store.createVotes(newVotes)
+  console.log('votes created')
+  loading.value = true
   router.push('/stats')
 }
 </script>
@@ -44,7 +51,7 @@ const submitVotes = () => {
         @update:voteValue="($event) => updateVoteValue(lehrer.id, $event)"
       />
     </div>
-    <button id="btn" @click="submitVotes">Submit</button>
+    <button id="btn" @click="submitVotes" :disabled="loading">Submit</button>
   </main>
 </template>
 
@@ -79,6 +86,12 @@ const submitVotes = () => {
   border: none;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.loading-btn {
+  background-color: var(--cl-light-blue);
+  color: var(--cl-text);
+  cursor: wait;
 }
 
 @media (min-width: 650px) {

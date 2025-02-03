@@ -10,9 +10,14 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
+    /*{
       path: '/stats',
-      name: 'stats',
+      name: 'abstimmungen',
+      component: StatsView,
+    },*/
+    {
+      path: '/stats/:abstimmungId',
+      name: 'statsFromAbstimmung',
       component: StatsView,
     },
   ],
