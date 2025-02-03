@@ -2,11 +2,11 @@
 
 <template>
   <div class="header">
-    <div>
-      <router-link to="/">
+    <div class="btn-container">
+      <router-link to="/" style="width: 100%">
         <button class="btn vote">Vote</button>
       </router-link>
-      <router-link to="/stats">
+      <router-link to="/stats" style="width: 100%">
         <button class="btn stats">Stats</button>
       </router-link>
     </div>
@@ -19,7 +19,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+
+  width: 100%;
+
+  margin-bottom: 8px;
 }
 
 .btn {
@@ -28,12 +36,9 @@
   font-weight: bold;
   font-size: 1.2rem;
 
-  width: 145px;
+  width: 100%;
   height: 30px;
   padding: 0;
-  margin-bottom: 8px;
-  margin-left: 5px;
-  margin-right: 5px;
 
   border: none;
   border-radius: 15px;
@@ -46,7 +51,7 @@
   font-size: 1.5rem;
   font-weight: bold;
 
-  width: 300px;
+  width: 100%;
   height: 50px;
 
   line-height: 50px;
@@ -65,6 +70,10 @@
 
   #title {
     width: 100%;
+  }
+
+  .btn-container {
+    width: auto;
   }
 
   .btn {

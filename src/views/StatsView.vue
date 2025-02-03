@@ -22,6 +22,7 @@ store.getLehrerRanking()
   gap: 18px 30px;
   flex-wrap: wrap;
 
-  margin: 30px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 </style>
