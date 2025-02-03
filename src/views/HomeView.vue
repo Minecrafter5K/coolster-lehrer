@@ -56,7 +56,8 @@ const submitVotes = () => {
   gap: 18px 30px;
   flex-wrap: wrap;
 
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 #btn {
@@ -87,8 +88,7 @@ const submitVotes = () => {
     height: 50px;
     border-radius: 15px;
 
-    position: absolute;
-    left: 69px;
+    justify-self: flex-start;
   }
 }
 </style>

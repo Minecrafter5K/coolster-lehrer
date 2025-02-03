@@ -4,11 +4,18 @@ import ClHeader from '@/components/ClHeader.vue'
 </script>
 
 <template>
-  <header>
-    <ClHeader />
-  </header>
+  <div class="wrapper">
+    <header>
+      <ClHeader />
+    </header>
 
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+</style>

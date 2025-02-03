@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 32px 32px 16px;
+  margin-top: 1rem;
 }
 
 .btn {
@@ -64,7 +64,7 @@
   }
 
   #title {
-    width: calc(100vw - 290px);
+    width: 100%;
   }
 
   .btn {
@@ -72,18 +72,21 @@
     width: 130px;
     height: 50px;
     border-radius: 15px;
+
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .vote {
     position: absolute;
-    left: 32px;
+    left: 0px;
     top: 50%;
     transform: translateY(-50%);
   }
 
   .stats {
     position: absolute;
-    right: 32px;
+    right: 0px;
     top: 50%;
     transform: translateY(-50%);
   }
