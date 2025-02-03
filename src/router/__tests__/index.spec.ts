@@ -3,8 +3,9 @@ import router from '@/router'
 
 describe('Router', () => {
   it('should have the correct routes', () => {
-    expect(router.getRoutes().length).toBe(2)
+    expect(router.getRoutes().length).toBe(3)
     expect(router.hasRoute('home')).toBe(true)
+    expect(router.hasRoute('jahre')).toBe(true)
     expect(router.hasRoute('stats')).toBe(true)
   })
 
@@ -15,6 +16,11 @@ describe('Router', () => {
 
   it('should resolve the stats route correctly', async () => {
     await router.push('/stats')
+    expect(router.currentRoute.value.name).toBe('jahre')
+  })
+
+  it('should resolve the stats route correctly', async () => {
+    await router.push('/stats/:jahr')
     expect(router.currentRoute.value.name).toBe('stats')
   })
 
