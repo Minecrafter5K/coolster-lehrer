@@ -5,6 +5,7 @@
   --cl-white: #FFFCF7;
   --cl-light-blue: #A1B5D8;
   --cl-blue: #738290;
+  --cl-slider-dots: #dbdbdb;
   --cl-text: #000000;
 
   /*Color pallet Dark*/
@@ -14,6 +15,7 @@
     --cl-white: #1e1f22;
     --cl-light-blue: #555964;
     --cl-blue: #353942;
+    --cl-slider-dots: #939393;
     --cl-text: #e4e4e4;
   }
 }
