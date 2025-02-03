@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import sound from '../assets/scroll.mp3'
 
 const props = defineProps<{ value: number }>()
 const emit = defineEmits<{
@@ -9,10 +10,20 @@ const emit = defineEmits<{
 const sliderValue = ref(props.value)
 const snapPoints: number[] = [-2, -1, 0, 1, 2]
 
+const snapSound = new Audio(sound)
+
 const snapToClosest = (): void => {
+  const previousValue = sliderValue.value
   sliderValue.value = snapPoints.reduce((prev, curr) =>
     Math.abs(curr - sliderValue.value) < Math.abs(prev - sliderValue.value) ? curr : prev,
   )
+
+  // Play sound only if the value actually changed
+  if (sliderValue.value !== previousValue) {
+    snapSound.currentTime = 0 // Reset sound to start
+    snapSound.play().catch((err) => console.error('Error playing sound:', err))
+  }
+
   emit('update:value', sliderValue.value)
 }
 </script>
@@ -87,7 +98,6 @@ const snapToClosest = (): void => {
 
 .slider-bg {
   height: 6px;
-  width: 100%;
   width: calc(100% + 6px);
   transform: translate(-3px, 0);
 
