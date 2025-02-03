@@ -12,9 +12,9 @@ describe('HelloWorld', () => {
   it('renders properly', () => {
     const wrapper = mount(HomeView, {
       global: {
-        plugins: [createTestingPinia({createSpy: vi.fn})]
-      }
-    });
+        plugins: [createTestingPinia({ createSpy: vi.fn })],
+      },
+    })
     expect(wrapper).toBeDefined()
   })
 })

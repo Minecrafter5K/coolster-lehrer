@@ -8,7 +8,7 @@ const lehrerRank = mande('http://localhost:3001/votes/rank')
 const bulkCreateVotes = mande('http://localhost:3001/votes/bulk')
 
 export const useLehrerStore = defineStore('lehrer', {
-  state: (): { lehrerData: Lehrer[], lehrerRanking: LehrerWithScore[] } => ({
+  state: (): { lehrerData: Lehrer[]; lehrerRanking: LehrerWithScore[] } => ({
     lehrerData: [],
     lehrerRanking: [],
   }),
@@ -22,6 +22,6 @@ export const useLehrerStore = defineStore('lehrer', {
 
     async createVotes(votes: Vote[]) {
       await bulkCreateVotes.post(votes)
-    }
+    },
   },
 })

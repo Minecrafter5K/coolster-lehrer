@@ -2,11 +2,10 @@
 import ClSlider from './ClSlider.vue'
 import type { Lehrer } from '@/interfaces/Lehrer.ts'
 
-const props = defineProps<{ lehrer: Lehrer, voteValue: number }>()
+const props = defineProps<{ lehrer: Lehrer; voteValue: number }>()
 const emit = defineEmits<{
   (e: 'update:voteValue', value: number): void
 }>()
-
 </script>
 
 <template>
@@ -16,7 +15,7 @@ const emit = defineEmits<{
       <div class="p_light_line"></div>
       <ClSlider
         :value="props.voteValue"
-        @update:value="$event => emit('update:voteValue', $event)"
+        @update:value="($event) => emit('update:voteValue', $event)"
       />
     </div>
   </div>
