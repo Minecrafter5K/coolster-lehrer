@@ -18,6 +18,23 @@
     --cl-slider-dots: #939393;
     --cl-text: #e4e4e4;
   }
+
+  /*Colors for Leaderboard*/
+  --cl-l-gold: #FFDB58;
+  --cl-l-gold-dark: #F0C42D;
+  --cl-l-silver: #C1C1C1;
+  --cl-l-silver-dark: #A6A6A6;
+  --cl-l-bronze: #cc803f;
+  --cl-l-bronze-dark: #a1632a;
+
+  @media (prefers-color-scheme: dark) {
+    --cl-l-gold: #E1AD01;
+    --cl-l-gold-dark: #C78C06;
+    --cl-l-silver: #A6A6A6;
+    --cl-l-silver-dark: #848482;
+    --cl-l-bronze: #aa6224;
+    --cl-l-bronze-dark: #884c16;
+  }
 }
 
 *,
