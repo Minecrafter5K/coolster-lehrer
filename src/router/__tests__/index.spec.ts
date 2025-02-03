@@ -19,8 +19,8 @@ describe('Router', () => {
     expect(router.currentRoute.value.name).toBe('jahre')
   })
 
-  it('should resolve the stats route correctly', async () => {
-    await router.push('/stats/:jahr')
+  it('should resolve the jahr route correctly', async () => {
+    await router.push('/stats/2025')
     expect(router.currentRoute.value.name).toBe('stats')
   })
 

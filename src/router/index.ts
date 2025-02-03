@@ -17,7 +17,7 @@ const router = createRouter({
       component: JahrView,
     },
     {
-      path: '/stats/:jahr',
+      path: '/stats/:abstimmungId',
       name: 'stats',
       component: StatsView,
     },
