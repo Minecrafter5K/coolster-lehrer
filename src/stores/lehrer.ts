@@ -10,6 +10,8 @@ const currentAbstimmungId = mande('http://localhost:3001/votes/currentAbstimmung
 const lehrerRank = mande('http://localhost:3001/votes/rank')
 const bulkCreateVotes = mande('http://localhost:3001/votes/bulk')
 
+const abstimmungDetail = mande('localhost:3001/votes/abstimmung')
+
 export const useLehrerStore = defineStore('lehrer', {
   state: (): {
     lehrerData: Lehrer[]
@@ -34,6 +36,9 @@ export const useLehrerStore = defineStore('lehrer', {
     },
     async fetchAbstimmungen() {
       this.abstimmungen = await abstimmungen.get()
+    },
+    async fetchAbstimmungenDetail(abstimmungId: number) {
+      return await abstimmungDetail.get(String(abstimmungId))
     },
 
     async createVotes(votes: Vote[]) {
