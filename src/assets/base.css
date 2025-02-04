@@ -25,7 +25,7 @@
   --cl-l-silver: #c1c1c1;
   --cl-l-silver-dark: #a6a6a6;
   --cl-l-bronze: #cc803f;
-  --cl-l-bronze-dark: #a1632a;
+  --cl-l-bronze-dark: #b16e34;
 
   @media (prefers-color-scheme: dark) {
     --cl-l-gold: #e1ad01;
