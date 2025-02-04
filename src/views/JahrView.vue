@@ -13,6 +13,7 @@ store.fetchLehrerRanking(Number(route.params.abstimmungId))
   <main>
     <div class="p_container">
       <ClJahr />
+      <ClJahr />
     </div>
   </main>
 </template>
@@ -23,8 +24,10 @@ store.fetchLehrerRanking(Number(route.params.abstimmungId))
   overflow: hidden;
   display: flex;
   gap: 18px 30px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
 
-  margin: 30px;
+  margin-top: 30px;
 }
 </style>
