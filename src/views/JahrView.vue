@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useLehrerStore } from '@/stores/lehrer.ts'
 import ClJahr from '@/components/ClJahr.vue'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
+import { useLehrerStore } from '@/stores/lehrer.ts'
 
 const store = useLehrerStore()
-store.fetchLehrerRanking(Number(route.params.abstimmungId))
+store.fetchAbstimmungen()
 </script>
 
 <template>
   <main>
     <div class="p_container">
-      <ClJahr />
-      <ClJahr />
+      <ClJahr
+        v-for="abstimmung in store.abstimmungen"
+        :key="abstimmung.id"
+        :abstimmung="abstimmung"
+      />
     </div>
   </main>
 </template>

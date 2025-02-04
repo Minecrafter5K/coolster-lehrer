@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Abstimmung } from '@/interfaces/Abstimmung.ts'
+
+const props = defineProps<{
+  abstimmung: Abstimmung
+}>()
+</script>
 
 <template>
   <div class="p_light_background">
@@ -8,7 +14,7 @@
       <span class="name">Max Verstappen</span>
     </h3>
     <div class="p_dark">
-      <h2>2025</h2>
+      <h2>{{ abstimmung.name }}</h2>
     </div>
     <div class="p_light_line"></div>
   </div>
