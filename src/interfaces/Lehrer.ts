@@ -1,5 +1,9 @@
 export interface Lehrer {
-  id?: number
+  id: number
+  name: string
+}
+
+export interface LehrerWithoutId {
   name: string
 }
 

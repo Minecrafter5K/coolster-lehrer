@@ -3,10 +3,11 @@ import router from '@/router'
 
 describe('Router', () => {
   it('should have the correct routes', () => {
-    expect(router.getRoutes().length).toBe(3)
+    expect(router.getRoutes().length).toBe(4)
     expect(router.hasRoute('home')).toBe(true)
     expect(router.hasRoute('jahre')).toBe(true)
     expect(router.hasRoute('stats')).toBe(true)
+    expect(router.hasRoute('admin')).toBe(true)
   })
 
   it('should resolve the home route correctly', async () => {
@@ -22,6 +23,11 @@ describe('Router', () => {
   it('should resolve the jahr route correctly', async () => {
     await router.push('/stats/2025')
     expect(router.currentRoute.value.name).toBe('stats')
+  })
+
+  it('should resolve the admin route correctly', async () => {
+    await router.push('/admin')
+    expect(router.currentRoute.value.name).toBe('admin')
   })
 
   it('should return undefined for unknown routes', async () => {

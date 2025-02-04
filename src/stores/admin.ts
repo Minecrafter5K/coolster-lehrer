@@ -1,5 +1,5 @@
 import type { Abstimmung } from '@/interfaces/Abstimmung'
-import type { Lehrer } from '@/interfaces/Lehrer'
+import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
 import { defineStore } from 'pinia'
 
 export const useAdminStore = defineStore('admin', {
@@ -24,8 +24,8 @@ export const useAdminStore = defineStore('admin', {
       console.log('Abstimmung erstellt:', abstimmung)
       console.log('Abstimmungen:', this.abstimmungen)
     },
-    async createLehrer(lehrer: Lehrer) {
-      this.lehrerData.push(lehrer)
+    async createLehrer(lehrer: LehrerWithoutId) {
+      this.lehrerData.push({ id: this.lehrerData.length + 1, ...lehrer })
       console.log('Lehrer erstellt:', lehrer)
       console.log('Lehrer:', this.lehrerData)
     },
