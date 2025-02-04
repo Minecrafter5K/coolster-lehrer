@@ -3,8 +3,14 @@ import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
 import { mande } from 'mande'
 import { defineStore } from 'pinia'
 
-const allAbstimmungen = mande('http://localhost:3001/votes/umfragen')
+const allAbstimmungen = mande('http://localhost:3001/votes/abstimmungen')
 const allLehrer = mande('http://localhost:3001/lehrer')
+
+const createAbstimmung = mande('http://localhost:3001/admin/createAbstimmung')
+const createLehrer = mande('http://localhost:3001/admin/createLehrer')
+
+const lehrer = mande('http://localhost:3001/admin/lehrer')
+const abstimmungen = mande('http://localhost:3001/admin/abstimmungen')
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
@@ -23,25 +29,21 @@ export const useAdminStore = defineStore('admin', {
     },
 
     async createAbstimmung(abstimmung: Abstimmung) {
-      this.abstimmungen.push(abstimmung)
-      console.log('Abstimmung erstellt:', abstimmung)
-      console.log('Abstimmungen:', this.abstimmungen)
+      await createAbstimmung.post(abstimmung)
+      await this.fetchAbstimmungen()
     },
     async createLehrer(lehrer: LehrerWithoutId) {
-      this.lehrerData.push({ id: this.lehrerData.length + 1, ...lehrer })
-      console.log('Lehrer erstellt:', lehrer)
-      console.log('Lehrer:', this.lehrerData)
+      await createLehrer.post(lehrer)
+      await this.fetchLehrer()
     },
 
     async deleteAbstimmung(id: number) {
-      this.abstimmungen = this.abstimmungen.filter((a) => a.id !== id)
-      console.log('Abstimmung gelöscht:', id)
-      console.log('Abstimmungen:', this.abstimmungen)
+      await abstimmungen.delete(id)
+      await this.fetchAbstimmungen()
     },
     async deleteLehrer(id: number) {
-      this.lehrerData = this.lehrerData.filter((a) => a.id !== id)
-      console.log('Lehrer gelöscht:', id)
-      console.log('Lehrer:', this.lehrerData)
+      await lehrer.delete(id)
+      await this.fetchLehrer()
     },
   },
 })
