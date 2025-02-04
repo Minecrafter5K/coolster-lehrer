@@ -1,5 +1,5 @@
 export interface Lehrer {
-  id: number
+  id?: number
   name: string
 }
 
