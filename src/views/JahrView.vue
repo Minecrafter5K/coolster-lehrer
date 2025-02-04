@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const store = useLehrerStore()
-store.getLehrerRanking(Number(route.params.abstimmungId))
+store.fetchLehrerRanking(Number(route.params.abstimmungId))
 </script>
 
 <template>

@@ -6,8 +6,8 @@ import { computed, ref } from 'vue'
 import router from '@/router'
 
 const store = useLehrerStore()
-store.getLehrer()
-store.getCurrentAbstimmungId()
+store.fetchLehrer()
+store.fetchCurrentAbstimmungId()
 
 const loading = ref(false)
 

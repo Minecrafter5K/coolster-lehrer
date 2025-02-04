@@ -3,6 +3,7 @@ import ClLehrer from './ClLehrer.vue'
 import { useAdminStore } from '@/stores/admin'
 
 const store = useAdminStore()
+store.fetchLehrer()
 
 async function deleteLehrer(id?: number) {
   if (id === undefined) return

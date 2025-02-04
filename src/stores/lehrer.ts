@@ -2,9 +2,11 @@ import { defineStore } from 'pinia'
 import { mande } from 'mande'
 import type { Lehrer, LehrerWithScore } from '@/interfaces/Lehrer.ts'
 import type { Vote } from '@/interfaces/Vote.ts'
+import type { Abstimmung } from '@/interfaces/Abstimmung'
 
 const lehrer = mande('http://localhost:3001/lehrer')
-const currentAbstimmungId = mande('http://localhost:3001/votes/currentUmfrage')
+const abstimmungen = mande('http://localhost:3001/votes/abstimmungen')
+const currentAbstimmungId = mande('http://localhost:3001/votes/currentAbstimmung')
 const lehrerRank = mande('http://localhost:3001/votes/rank')
 const bulkCreateVotes = mande('http://localhost:3001/votes/bulk')
 
@@ -12,22 +14,26 @@ export const useLehrerStore = defineStore('lehrer', {
   state: (): {
     lehrerData: Lehrer[]
     lehrerRanking: LehrerWithScore[]
+    abstimmungen: Abstimmung[]
     currentAbstimmungId: number
   } => ({
     lehrerData: [],
     lehrerRanking: [],
+    abstimmungen: [],
     currentAbstimmungId: 0,
   }),
   actions: {
-    async getLehrer() {
+    async fetchLehrer() {
       this.lehrerData = await lehrer.get()
     },
-    async getCurrentAbstimmungId() {
+    async fetchCurrentAbstimmungId() {
       this.currentAbstimmungId = await currentAbstimmungId.get()
     },
-
-    async getLehrerRanking(abstimmungId: number) {
+    async fetchLehrerRanking(abstimmungId: number) {
       this.lehrerRanking = await lehrerRank.get(String(abstimmungId))
+    },
+    async fetchAbstimmungen() {
+      this.abstimmungen = await abstimmungen.get()
     },
 
     async createVotes(votes: Vote[]) {

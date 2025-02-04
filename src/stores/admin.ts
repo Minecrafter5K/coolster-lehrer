@@ -1,24 +1,27 @@
 import type { Abstimmung } from '@/interfaces/Abstimmung'
 import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
+import { mande } from 'mande'
 import { defineStore } from 'pinia'
+
+const allAbstimmungen = mande('http://localhost:3001/votes/umfragen')
+const allLehrer = mande('http://localhost:3001/lehrer')
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
     abstimmungen: Abstimmung[]
     lehrerData: Lehrer[]
   } => ({
-    abstimmungen: [
-      { id: 1, name: 'Abstimmung 1' },
-      { id: 2, name: 'Abstimmung 2' },
-      { id: 3, name: 'Abstimmung 3' },
-    ],
-    lehrerData: [
-      { id: 1, name: 'Lehrer 1' },
-      { id: 2, name: 'Lehrer 2' },
-      { id: 3, name: 'Lehrer 3' },
-    ],
+    abstimmungen: [],
+    lehrerData: [],
   }),
   actions: {
+    async fetchAbstimmungen() {
+      this.abstimmungen = await allAbstimmungen.get()
+    },
+    async fetchLehrer() {
+      this.lehrerData = await allLehrer.get()
+    },
+
     async createAbstimmung(abstimmung: Abstimmung) {
       this.abstimmungen.push(abstimmung)
       console.log('Abstimmung erstellt:', abstimmung)

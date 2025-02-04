@@ -3,6 +3,7 @@ import { useAdminStore } from '@/stores/admin'
 import ClAbstimmung from './ClAbstimmung.vue'
 
 const store = useAdminStore()
+store.fetchAbstimmungen()
 
 async function deleteAbstimmung(id?: number) {
   if (id === undefined) return
