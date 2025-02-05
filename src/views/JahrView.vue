@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import ClJahr from '@/components/ClJahr.vue'
 import { useLehrerStore } from '@/stores/lehrer.ts'
+import { onMounted } from 'vue'
 
 const store = useLehrerStore()
-store.fetchAbstimmungen()
+
+onMounted(async () => {
+  await store.fetchAbstimmungenDetail()
+})
 </script>
 
 <template>
   <main>
     <div class="p_container">
-      <ClJahr
-        v-for="abstimmung in store.abstimmungen"
+      <router-link
+        class="w-full"
+        :to="'/stats/' + abstimmung.id"
+        v-for="abstimmung in store.abstimmungenDetail"
         :key="abstimmung.id"
-        :abstimmung="abstimmung"
-      />
+      >
+        <ClJahr :abstimmung="abstimmung" />
+      </router-link>
     </div>
   </main>
 </template>

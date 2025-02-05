@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Abstimmung } from '@/interfaces/Abstimmung.ts'
+import type { AbstimmungDetail } from '@/interfaces/Abstimmung.ts'
 
 const props = defineProps<{
-  abstimmung: Abstimmung
+  abstimmung: AbstimmungDetail
 }>()
 </script>
 
@@ -11,10 +11,10 @@ const props = defineProps<{
     <h1>&raquo;</h1>
     <h3>
       1. Platz:<br />
-      <span class="name">Max Verstappen</span>
+      <span class="name">{{ props.abstimmung.winner.name }}</span>
     </h3>
     <div class="p_dark">
-      <h2>{{ abstimmung.name }}</h2>
+      <h2>{{ props.abstimmung.name }}</h2>
     </div>
     <div class="p_light_line"></div>
   </div>
