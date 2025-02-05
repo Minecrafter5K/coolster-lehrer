@@ -22,7 +22,7 @@ const props = defineProps<{
 
 <style scoped>
 .p_light_background {
-  height: 170px;
+  height: 280px;
   width: 100%;
   background-color: var(--cl-light-green);
   border-radius: 25px;
@@ -33,20 +33,22 @@ const props = defineProps<{
 }
 
 .p_dark {
-  height: 100%;
-  width: 50%;
+  height: 60%;
+  width: 100%;
   background-color: var(--cl-green);
 
   display: grid;
   position: absolute;
+  top: 0;
 }
 
 .p_light_line {
   position: absolute;
-  height: 170px;
-  width: 1px;
+  height: 1px;
+  width: 100%;
   background-color: var(--cl-white);
-  left: calc(50% - 1px);
+
+  top: calc(60% - 1px);
 }
 
 h1 {
@@ -67,10 +69,9 @@ h2 {
 }
 
 h3 {
-  text-align: right;
   position: absolute;
-  top: 20px;
-  right: 25px;
+  bottom: 20px;
+  left: 20px;
 
   font-weight: 400;
   line-height: 1.3;
@@ -79,5 +80,47 @@ h3 {
 
 .name {
   font-weight: 550;
+}
+
+@media (min-width: 650px) {
+  .p_light_background {
+    height: 170px;
+    width: 100%;
+    background-color: var(--cl-light-green);
+    border-radius: 25px;
+
+    position: relative;
+    float: left;
+    overflow: hidden;
+  }
+
+  .p_dark {
+    height: 100%;
+    width: 50%;
+    background-color: var(--cl-green);
+
+    display: grid;
+    position: absolute;
+  }
+
+  .p_light_line {
+    position: absolute;
+    height: 170px;
+    width: 1px;
+    background-color: var(--cl-white);
+    left: calc(50% - 1px);
+    top: 0;
+  }
+
+  h3 {
+    text-align: right;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    font-weight: 400;
+    line-height: 1.3;
+    font-size: 20px;
+  }
 }
 </style>

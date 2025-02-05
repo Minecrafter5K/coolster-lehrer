@@ -14,7 +14,7 @@ onMounted(async () => {
   <main>
     <div class="p_container">
       <router-link
-        class="w-full"
+        id="router"
         :to="'/stats/' + abstimmung.id"
         v-for="abstimmung in store.abstimmungenDetail"
         :key="abstimmung.id"
@@ -36,5 +36,27 @@ onMounted(async () => {
   align-items: center;
 
   margin-top: 30px;
+}
+
+#router {
+  width: 100%;
+}
+
+@media (min-width: 650px) {
+  .p_container {
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    gap: 18px 30px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 30px;
+  }
+
+  #router {
+    width: 100%;
+  }
 }
 </style>
