@@ -36,12 +36,13 @@ const submitVotes = async () => {
   await store.createVotes(newVotes)
   console.log('votes created')
   loading.value = true
-  router.push('/stats')
+  await router.push('/stats')
 }
 </script>
 
 <template>
   <main>
+    <p>{{ store.currentAbstimmung?.name }}</p>
     <div class="p_container">
       <ClProfileSlider
         v-for="lehrer in votes"
@@ -63,8 +64,14 @@ const submitVotes = async () => {
   gap: 18px 30px;
   flex-wrap: wrap;
 
-  margin-top: 30px;
+  margin-top: 15px;
   margin-bottom: 30px;
+}
+
+p {
+  display: grid;
+  justify-content: center;
+  font-size: 15px;
 }
 
 #btn {
