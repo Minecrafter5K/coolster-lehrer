@@ -9,7 +9,7 @@ const lehrerApi = mande('http://localhost:3001/lehrer')
 const abstimmungenApi = mande('http://localhost:3001/votes/abstimmungen')
 const abstimmungenDetailApi = mande('http://localhost:3001/votes/abstimmungen/detail')
 
-const currentAbstimmungIdApi = mande('http://localhost:3001/votes/currentAbstimmung')
+const currentAbstimmungApi = mande('http://localhost:3001/votes/currentAbstimmung')
 const lehrerRankApi = mande('http://localhost:3001/votes/rank')
 const bulkCreateVotesApi = mande('http://localhost:3001/votes/bulk')
 
@@ -18,13 +18,13 @@ export const useLehrerStore = defineStore('lehrer', () => {
   const lehrerRanking = ref<LehrerWithScore[]>([])
   const abstimmungen = ref<Abstimmung[]>([])
   const abstimmungenDetail = ref<AbstimmungDetail[]>([])
-  const currentAbstimmungId = ref<number>(0)
+  const currentAbstimmung = ref<Abstimmung>()
 
   const fetchLehrer = async () => {
     lehrerData.value = await lehrerApi.get()
   }
   async function fetchCurrentAbstimmungId() {
-    currentAbstimmungId.value = await currentAbstimmungIdApi.get()
+    currentAbstimmung.value = await currentAbstimmungApi.get()
   }
   async function fetchLehrerRanking(abstimmungId: number) {
     lehrerRanking.value = await lehrerRankApi.get(String(abstimmungId))
@@ -46,7 +46,7 @@ export const useLehrerStore = defineStore('lehrer', () => {
     lehrerRanking,
     abstimmungen,
     abstimmungenDetail,
-    currentAbstimmungId,
+    currentAbstimmung,
     fetchLehrer,
     fetchLehrerRanking,
     fetchAbstimmungen,

@@ -30,7 +30,7 @@ const submitVotes = async () => {
     .map((vote) => ({
       lehrerId: vote.id,
       vote: vote.score,
-      abstimmungId: store.currentAbstimmungId,
+      abstimmungId: store.currentAbstimmung!.id!,
     }))
   console.log('newVotes')
   await store.createVotes(newVotes)
