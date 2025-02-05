@@ -10,6 +10,8 @@ const props = defineProps<{
 <template>
   <div class="flex justify-between">
     <p>{{ props.abstimmung.name }}</p>
+    <p>{{ props.abstimmung.startDate }}</p>
+    <p>{{ props.abstimmung.endDate }}</p>
     <button @click="deleteAbstimmung(abstimmung.id)" class="cursor-pointer bg-amber-800">
       delete
     </button>
