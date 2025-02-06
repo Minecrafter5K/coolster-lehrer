@@ -14,13 +14,22 @@ const abstimmungen = mande('http://localhost:3001/admin/abstimmungen')
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
+    isLoggedin: boolean
     abstimmungen: Abstimmung[]
     lehrerData: Lehrer[]
   } => ({
+    isLoggedin: false,
     abstimmungen: [],
     lehrerData: [],
   }),
   actions: {
+    async login() {
+      this.isLoggedin = true
+    },
+    async logout() {
+      this.isLoggedin = false
+    },
+
     async fetchAbstimmungen() {
       this.abstimmungen = await allAbstimmungen.get()
     },
