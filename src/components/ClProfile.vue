@@ -5,10 +5,18 @@ import { computed } from 'vue'
 const props = defineProps<{ lehrer: LehrerWithScore }>()
 
 const rank = computed(() => 'rank-' + props.lehrer.rank)
+
+// pfp
+const imageUrl = computed(() => `/pfps/${props.lehrer.name}.png`)
+
+const setFallback = (event: Event) => {
+  ;(event.target as HTMLImageElement).src = '/pfps/blank_pfp.png'
+}
 </script>
 
 <template>
   <div class="p_light_background" v-bind:class="rank">
+    <img :src="imageUrl" @error="setFallback" alt="profile picture" />
     <div class="p_dark" v-bind:class="rank">
       <h2>{{ props.lehrer.name }}</h2>
       <div class="p_light_line" v-bind:class="rank"></div>
@@ -35,6 +43,15 @@ const rank = computed(() => 'rank-' + props.lehrer.rank)
 }
 .p_light_background.rank-3 {
   background-color: var(--cl-l-bronze);
+}
+
+img {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+
+  top: 40px;
+  left: 50px;
 }
 
 .p_dark {

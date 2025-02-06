@@ -1,15 +1,24 @@
 <script setup lang="ts">
 import ClSlider from './ClSlider.vue'
 import type { Lehrer } from '@/interfaces/Lehrer.ts'
+import { computed } from 'vue'
 
 const props = defineProps<{ lehrer: Lehrer; voteValue: number }>()
 const emit = defineEmits<{
   (e: 'update:voteValue', value: number): void
 }>()
+
+// pfp
+const imageUrl = computed(() => `/pfps/${props.lehrer.name}.png`)
+
+const setFallback = (event: Event) => {
+  ;(event.target as HTMLImageElement).src = '/pfps/blank_pfp.png'
+}
 </script>
 
 <template>
   <div class="p_light_background">
+    <img :src="imageUrl" @error="setFallback" alt="profile picture" />
     <div class="p_dark">
       <h2>{{ props.lehrer.name }}</h2>
       <div class="p_light_line"></div>
@@ -30,6 +39,15 @@ const emit = defineEmits<{
 
   position: relative;
   float: left;
+}
+
+img {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+
+  top: 40px;
+  left: 50px;
 }
 
 .p_dark {
