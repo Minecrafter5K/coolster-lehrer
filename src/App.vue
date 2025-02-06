@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import ClHeader from '@/components/ClHeader.vue'
+import { useAdminStore } from './stores/admin'
+
+const adminStore = useAdminStore()
+adminStore.checkLogin()
 </script>
 
 <template>

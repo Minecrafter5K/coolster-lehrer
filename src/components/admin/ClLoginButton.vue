@@ -37,6 +37,7 @@ async function login() {
       userId: 'internalUserId',
       response: asseResp,
     }),
+    credentials: 'include',
   })
   const verificationJSON = await verificationResp.json()
   console.log('Server Response', JSON.stringify(verificationJSON, null, 2))

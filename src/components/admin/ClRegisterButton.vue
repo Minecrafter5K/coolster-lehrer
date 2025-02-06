@@ -45,6 +45,7 @@ async function register() {
       userId: 'internalUserId',
       response: attResp,
     }),
+    credentials: 'include',
   })
 
   const verificationJSON = await verificationResp.json()

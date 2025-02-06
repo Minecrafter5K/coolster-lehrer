@@ -1,5 +1,6 @@
 import type { Abstimmung } from '@/interfaces/Abstimmung'
 import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
+import router from '@/router'
 import { mande } from 'mande'
 import { defineStore } from 'pinia'
 
@@ -27,7 +28,23 @@ export const useAdminStore = defineStore('admin', {
       this.isLoggedin = true
     },
     async logout() {
+      await fetch('http://localhost:3001/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      })
       this.isLoggedin = false
+      router.push('/login')
+    },
+    checkLogin() {
+      fetch('http://localhost:3001/auth/ping', {
+        credentials: 'include',
+      }).then((res) => {
+        if (res.status === 200) {
+          this.isLoggedin = true
+        } else {
+          this.isLoggedin = false
+        }
+      })
     },
 
     async fetchAbstimmungen() {
