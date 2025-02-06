@@ -3,7 +3,7 @@ import router from '@/router'
 
 describe('Router', () => {
   it('should have the correct routes', () => {
-    expect(router.getRoutes().length).toBe(4)
+    expect(router.getRoutes().length).toBe(6)
     expect(router.hasRoute('home')).toBe(true)
     expect(router.hasRoute('jahre')).toBe(true)
     expect(router.hasRoute('stats')).toBe(true)
@@ -28,6 +28,16 @@ describe('Router', () => {
   it('should resolve the admin route correctly', async () => {
     await router.push('/admin')
     expect(router.currentRoute.value.name).toBe('admin')
+  })
+
+  it('should resolve the login route correctly', async () => {
+    await router.push('/login')
+    expect(router.currentRoute.value.name).toBe('login')
+  })
+
+  it('should resolve the registration route correctly', async () => {
+    await router.push('/register')
+    expect(router.currentRoute.value.name).toBe('register')
   })
 
   it('should return undefined for unknown routes', async () => {
