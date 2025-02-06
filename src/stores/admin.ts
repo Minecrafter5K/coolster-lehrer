@@ -35,16 +35,16 @@ export const useAdminStore = defineStore('admin', {
       this.isLoggedin = false
       router.push('/login')
     },
-    checkLogin() {
-      fetch('http://localhost:3001/auth/ping', {
+    async checkLogin() {
+      const res = await fetch('http://localhost:3001/auth/ping', {
         credentials: 'include',
-      }).then((res) => {
-        if (res.status === 200) {
-          this.isLoggedin = true
-        } else {
-          this.isLoggedin = false
-        }
       })
+
+      if (res.status === 200) {
+        this.isLoggedin = true
+      } else {
+        this.isLoggedin = false
+      }
     },
 
     async fetchAbstimmungen() {
