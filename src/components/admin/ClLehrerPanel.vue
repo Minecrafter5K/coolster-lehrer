@@ -12,7 +12,7 @@ async function deleteLehrer(id?: number) {
 </script>
 
 <template>
-  <div class="bg-amber-950">
+  <div class="container">
     <ClLehrer
       v-for="lehrer in store.lehrerData"
       :key="lehrer.id"
@@ -21,3 +21,13 @@ async function deleteLehrer(id?: number) {
     />
   </div>
 </template>
+
+<style scoped>
+.container {
+  background-color: var(--cl-light-green);
+}
+
+.container div:nth-child(even) {
+  background-color: var(--cl-green);
+}
+</style>

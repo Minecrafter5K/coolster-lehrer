@@ -12,7 +12,7 @@ async function deleteAbstimmung(id?: number) {
 </script>
 
 <template>
-  <div class="bg-amber-950">
+  <div class="container">
     <ClAbstimmung
       v-for="abstimmung in store.abstimmungen"
       :key="abstimmung.id"
@@ -21,3 +21,13 @@ async function deleteAbstimmung(id?: number) {
     />
   </div>
 </template>
+
+<style scoped>
+.container {
+  background-color: var(--cl-light-green);
+}
+
+.container div:nth-child(even) {
+  background-color: var(--cl-green);
+}
+</style>

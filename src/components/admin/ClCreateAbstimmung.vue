@@ -32,18 +32,43 @@ async function handleSubmit(e: Event) {
   <div>
     <form @submit="handleSubmit">
       <label for="abstimmung-name">Name der Abstimmung:</label>
-      <input id="abstimmung-name" type="text" v-model="newAbstimmungName" required />
+      <input id="abstimmung-name" type="text" v-model="newAbstimmungName" required /><br />
 
       <label for="abstimmung-id">ID der Abstimmung:</label>
-      <input id="abstimmung-id" type="text" v-model="newAbstimmungId" />
+      <input id="abstimmung-id" type="text" v-model="newAbstimmungId" /><br />
 
       <label for="abstimmung-startDate">Startdatum der Abstimmung:</label>
-      <input id="abstimmung-startDate" type="datetime-local" v-model="newAbstimmungStartDate" />
+      <input
+        id="abstimmung-startDate"
+        type="datetime-local"
+        v-model="newAbstimmungStartDate"
+      /><br />
 
       <label for="abstimmung-endDate">Enddatum der Abstimmung:</label>
-      <input id="abstimmung-endDate" type="datetime-local" v-model="newAbstimmungEndDate" />
+      <input id="abstimmung-endDate" type="datetime-local" v-model="newAbstimmungEndDate" /><br />
 
       <button type="submit">Abstimmung erstellen</button>
     </form>
   </div>
 </template>
+
+<style scoped>
+form {
+  margin: 5px;
+}
+
+input {
+  padding-left: 5px;
+  margin: 2px;
+  border: 1px solid var(--cl-text);
+  border-radius: 5px;
+}
+
+button {
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: var(--cl-light-blue);
+  border-radius: 5px;
+  float: right;
+}
+</style>

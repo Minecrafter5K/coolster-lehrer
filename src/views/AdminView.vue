@@ -7,7 +7,7 @@ import ClCreateLehrer from '@/components/admin/ClCreateLehrer.vue'
 
 <template>
   <main>
-    <h1 class="mt-6 text-3xl">Admin</h1>
+    <h1 class="mt-6 text-3xl">Admin panel</h1>
     <h2 class="text-xl">Lehrer</h2>
     <LehrerPanel />
     <ClCreateLehrer />
@@ -17,3 +17,10 @@ import ClCreateLehrer from '@/components/admin/ClCreateLehrer.vue'
     <ClCreateAbstimmung />
   </main>
 </template>
+
+<style scoped>
+h2 {
+  margin-top: 10px;
+  margin-left: 2px;
+}
+</style>

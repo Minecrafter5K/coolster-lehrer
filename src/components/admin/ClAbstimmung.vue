@@ -13,7 +13,22 @@ const props = defineProps<{
     <p>{{ props.abstimmung.startDate }}</p>
     <p>{{ props.abstimmung.endDate }}</p>
     <button @click="deleteAbstimmung(abstimmung.id)" class="cursor-pointer bg-amber-800">
-      delete
+      Delete
     </button>
   </div>
 </template>
+
+<style scoped>
+button {
+  background-color: var(--cl-light-blue);
+}
+
+p {
+  margin-left: 5px;
+}
+
+button {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+</style>
