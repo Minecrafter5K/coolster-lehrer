@@ -90,5 +90,5 @@ jobs:
 
       - name: build
         run: |
-          docker build -t ghcr.io/minerafter5k/coolster-lehrer:latest .
-          docker push ghcr.io/minerafter5k/coolster-lehrer:latest
+          docker build -t ghcr.io/minecrafter5k/coolster-lehrer:latest .
+          docker push ghcr.io/minecrafter5k/coolster-lehrer:latest
