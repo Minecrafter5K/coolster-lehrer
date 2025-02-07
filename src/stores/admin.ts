@@ -11,7 +11,7 @@ const createAbstimmung = mande('http://localhost:3001/admin/createAbstimmung')
 const createLehrer = mande('http://localhost:3001/admin/createLehrer')
 
 const lehrer = mande('http://localhost:3001/admin/lehrer')
-const abstimmungen = mande('http://localhost:3001/admin/abstimmungen')
+const abstimmungen = mande('http://localhost:3001/admin/abstimmung')
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
