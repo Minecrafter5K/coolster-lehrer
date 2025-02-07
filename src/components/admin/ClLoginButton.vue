@@ -52,5 +52,5 @@ async function login() {
 </script>
 
 <template>
-  <button @click="login" class="rounded-lg bg-black p-1.5 px-2.5">Login</button>
+  <button @click="login" id="login">Login</button>
 </template>

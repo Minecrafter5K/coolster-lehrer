@@ -62,5 +62,5 @@ async function register() {
 </script>
 
 <template>
-  <button @click="register" class="rounded-lg bg-black p-1.5 px-2.5">Register</button>
+  <button id="register" @click="register">Register</button>
 </template>
