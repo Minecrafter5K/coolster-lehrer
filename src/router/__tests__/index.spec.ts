@@ -1,7 +1,13 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
 import router from '@/router'
+import { useAdminStore } from '@/stores/admin.ts'
 
 describe('Router', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
   it('should have the correct routes', () => {
     expect(router.getRoutes().length).toBe(6)
     expect(router.hasRoute('home')).toBe(true)
@@ -26,7 +32,12 @@ describe('Router', () => {
   })
 
   it('should resolve the admin route correctly', async () => {
+    const adminStore = useAdminStore()
+    vi.spyOn(adminStore, 'checkLogin').mockResolvedValue(undefined)
+    adminStore.isLoggedin = true // Simulate successful login
+
     await router.push('/admin')
+    await router.isReady()
     expect(router.currentRoute.value.name).toBe('admin')
   })
 
