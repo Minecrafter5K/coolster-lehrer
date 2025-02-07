@@ -12,9 +12,7 @@ const props = defineProps<{
     <p>{{ props.abstimmung.name }}</p>
     <p>{{ props.abstimmung.startDate }}</p>
     <p>{{ props.abstimmung.endDate }}</p>
-    <button @click="deleteAbstimmung(abstimmung.id)" class="cursor-pointer bg-amber-800">
-      Delete
-    </button>
+    <button @click="deleteAbstimmung(abstimmung.id)" class="cursor-pointer">Delete</button>
   </div>
 </template>
 

@@ -62,6 +62,8 @@ input {
   margin: 2px;
   border: 1px solid var(--cl-text);
   border-radius: 5px;
+
+  cursor: pointer;
 }
 
 button {
@@ -70,5 +72,7 @@ button {
   background-color: var(--cl-light-blue);
   border-radius: 5px;
   float: right;
+
+  cursor: pointer;
 }
 </style>
