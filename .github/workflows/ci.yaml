@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: ["*"]
+    branches: ['*']
   push:
-    branches: ["main"]
+    branches: ['main']
   merge_group:
 
 concurrency:
@@ -71,3 +71,14 @@ jobs:
 
       - name: Unit Tests
         run: npm run test:unit
+
+  build:
+    needs: [lint, format, typecheck, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: build
+        run: |
+          docker build -t ghcr.io/Minerafter5K/coolster-lehrer:latest .
+          docker push ghcr.io/Minerafter5K/coolster-lehrer:latest
