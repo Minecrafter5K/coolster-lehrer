@@ -17,6 +17,7 @@ import ClHeader from '@/components/ClHeader.vue'
 .wrapper {
   margin-left: calc(5rem + 5vw);
   margin-right: calc(5rem + 5vw);
+  margin-bottom: 5rem;
 }
 
 @media (max-width: 870px) {
