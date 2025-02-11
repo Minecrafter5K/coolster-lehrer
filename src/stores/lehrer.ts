@@ -5,13 +5,15 @@ import type { Vote } from '@/interfaces/Vote.ts'
 import type { Abstimmung, AbstimmungDetail } from '@/interfaces/Abstimmung'
 import { ref } from 'vue'
 
-const lehrerApi = mande('http://localhost:3001/lehrer')
-const abstimmungenApi = mande('http://localhost:3001/votes/abstimmungen')
-const abstimmungenDetailApi = mande('http://localhost:3001/votes/abstimmungen/detail')
+const baseUrl = import.meta.env.VITE_API_URL
 
-const currentAbstimmungApi = mande('http://localhost:3001/votes/currentAbstimmung')
-const lehrerRankApi = mande('http://localhost:3001/votes/rank')
-const bulkCreateVotesApi = mande('http://localhost:3001/votes/bulk')
+const lehrerApi = mande(`${baseUrl}/lehrer`)
+const abstimmungenApi = mande(`${baseUrl}/votes/abstimmungen`)
+const abstimmungenDetailApi = mande(`${baseUrl}/votes/abstimmungen/detail`)
+
+const currentAbstimmungApi = mande(`${baseUrl}/votes/currentAbstimmung`)
+const lehrerRankApi = mande(`${baseUrl}/votes/rank`)
+const bulkCreateVotesApi = mande(`${baseUrl}/votes/bulk`)
 
 export const useLehrerStore = defineStore('lehrer', () => {
   const lehrerData = ref<Lehrer[]>([])

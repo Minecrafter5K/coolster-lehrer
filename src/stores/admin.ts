@@ -4,14 +4,16 @@ import router from '@/router'
 import { mande } from 'mande'
 import { defineStore } from 'pinia'
 
-const allAbstimmungen = mande('http://localhost:3001/votes/abstimmungen')
-const allLehrer = mande('http://localhost:3001/lehrer')
+const baseUrl = import.meta.env.VITE_API_URL
 
-const createAbstimmung = mande('http://localhost:3001/admin/createAbstimmung')
-const createLehrer = mande('http://localhost:3001/admin/createLehrer')
+const allAbstimmungen = mande(`${baseUrl}/votes/abstimmungen`)
+const allLehrer = mande(`${baseUrl}/lehrer`)
 
-const lehrer = mande('http://localhost:3001/admin/lehrer')
-const abstimmungen = mande('http://localhost:3001/admin/abstimmung')
+const createAbstimmung = mande(`${baseUrl}/admin/createAbstimmung`)
+const createLehrer = mande(`${baseUrl}/admin/createLehrer`)
+
+const lehrer = mande(`${baseUrl}/admin/lehrer`)
+const abstimmungen = mande(`${baseUrl}/admin/abstimmung`)
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
@@ -28,7 +30,7 @@ export const useAdminStore = defineStore('admin', {
       this.isLoggedin = true
     },
     async logout() {
-      await fetch('http://localhost:3001/auth/logout', {
+      await fetch(`${baseUrl}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
       })
@@ -36,7 +38,7 @@ export const useAdminStore = defineStore('admin', {
       router.push('/login')
     },
     async checkLogin() {
-      const res = await fetch('http://localhost:3001/auth/ping', {
+      const res = await fetch(`${baseUrl}/auth/ping`, {
         credentials: 'include',
       })
 
