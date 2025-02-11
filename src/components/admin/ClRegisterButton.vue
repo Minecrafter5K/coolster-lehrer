@@ -6,13 +6,15 @@ const emit = defineEmits<{
   (e: 'errorMsg', type: 'authError', msg: string): void
 }>()
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const adminStore = useAdminStore()
 
 async function register() {
   emit('errorMsg', 'authError', '')
 
   // Request registration options with a userId in the POST body.
-  const resp = await fetch('http://localhost:3001/auth/generate-registration-options', {
+  const resp = await fetch(`${baseUrl}/auth/generate-registration-options`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -36,7 +38,7 @@ async function register() {
   }
 
   // Verify registration response by posting the data along with the userId.
-  const verificationResp = await fetch('http://localhost:3001/auth/verify-registration', {
+  const verificationResp = await fetch(`${baseUrl}:3001/auth/verify-registration`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

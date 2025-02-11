@@ -11,6 +11,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
+env:
+  VITE_API_URL: '${{ secrets.VITE_API_URL }}'
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -90,5 +93,5 @@ jobs:
 
       - name: build
         run: |
-          docker build -t ghcr.io/minecrafter5k/coolster-lehrer:latest .
+          docker build --build-arg VITE_API_URL=$VITE_API_URL -t ghcr.io/minecrafter5k/coolster-lehrer:latest .
           docker push ghcr.io/minecrafter5k/coolster-lehrer:latest

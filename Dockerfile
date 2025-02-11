@@ -3,13 +3,15 @@ FROM node:20-alpine AS base
 # BUILDER
 FROM base AS builder
 
+ARG VITE_API_URL=${VITE_API_URL}
+
 # Set working directory
 WORKDIR /app
 COPY . .
 
 # Install dependencies and build
 RUN npm i
-RUN npm run build
+RUN VITE_API_URL=${VITE_API_URL} npm run build
 
 # RUNNER
 FROM nginx:alpine-slim

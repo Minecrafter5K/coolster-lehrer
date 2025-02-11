@@ -6,13 +6,15 @@ const emit = defineEmits<{
   (e: 'errorMsg', type: 'authError', msg: string): void
 }>()
 
+const baseUrl = import.meta.env.VITE_API_URL
+
 const adminStore = useAdminStore()
 
 async function login() {
   emit('errorMsg', 'authError', '')
 
   // Request authentication options with userId in the POST body.
-  const resp = await fetch('http://localhost:3001/auth/generate-authentication-options', {
+  const resp = await fetch(`${baseUrl}/auth/generate-authentication-options`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,7 +30,7 @@ async function login() {
     throw new Error(error as string)
   }
   // Verify authentication response by posting the data with userId.
-  const verificationResp = await fetch('http://localhost:3001/auth/verify-authentication', {
+  const verificationResp = await fetch(`${baseUrl}/auth/verify-authentication`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
