@@ -17,3 +17,5 @@ FROM nginx:alpine-slim
 COPY --from=builder --chown=nodejs:nodejs /app/dist /usr/share/nginx/html
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
