@@ -2,6 +2,10 @@
 import { useAdminStore } from '@/stores/admin'
 import { startAuthentication } from '@simplewebauthn/browser'
 
+const props = defineProps<{
+  username: string
+}>()
+
 const emit = defineEmits<{
   (e: 'errorMsg', type: 'authError', msg: string): void
 }>()
@@ -19,11 +23,15 @@ async function login() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ userId: 'internalUserId' }),
+    body: JSON.stringify({ username: props.username }),
   })
+
+  const resBody = await resp.json()
+
+  const { opts, userId } = resBody
+
   let asseResp
   try {
-    const opts = await resp.json()
     asseResp = await startAuthentication({ optionsJSON: opts })
   } catch (error) {
     emit('errorMsg', 'authError', 'Error on starting authentication')
@@ -36,7 +44,7 @@ async function login() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      userId: 'internalUserId',
+      userId: userId,
       response: asseResp,
     }),
     credentials: 'include',

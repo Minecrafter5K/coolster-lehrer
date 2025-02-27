@@ -5,6 +5,7 @@ import { ref } from 'vue'
 
 const store = useAdminStore()
 const error = ref('')
+const username = ref('')
 </script>
 
 <template>
@@ -12,7 +13,8 @@ const error = ref('')
     <div class="container">
       <h1>Login</h1>
       <div class="center">
-        <ClLoginButton v-on:error-msg="(type, msg) => (error = msg)" />
+        <input type="text" v-model="username" placeholder="Username" />
+        <ClLoginButton :username="username" v-on:error-msg="(type, msg) => (error = msg)" />
         <p id="error" class="text-red-500">{{ error }}</p>
       </div>
       <p>

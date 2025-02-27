@@ -2,6 +2,10 @@
 import { useAdminStore } from '@/stores/admin'
 import { startRegistration } from '@simplewebauthn/browser'
 
+const props = defineProps<{
+  username: string
+}>()
+
 const emit = defineEmits<{
   (e: 'errorMsg', type: 'authError', msg: string): void
 }>()
@@ -19,13 +23,14 @@ async function register() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ userId: 'internalUserId' }),
+    body: JSON.stringify({ username: props.username }),
   })
+
+  const resBody = await resp.json()
+  const { opts, userId } = resBody
 
   let attResp
   try {
-    const opts = await resp.json()
-
     attResp = await startRegistration({ optionsJSON: opts })
     console.log('Registration Response', JSON.stringify(attResp, null, 2))
   } catch (error: unknown) {
@@ -38,13 +43,13 @@ async function register() {
   }
 
   // Verify registration response by posting the data along with the userId.
-  const verificationResp = await fetch(`${baseUrl}:3001/auth/verify-registration`, {
+  const verificationResp = await fetch(`${baseUrl}/auth/verify-registration`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      userId: 'internalUserId',
+      userId: userId,
       response: attResp,
     }),
     credentials: 'include',
