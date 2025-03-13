@@ -1,5 +1,6 @@
 import type { Abstimmung } from '@/interfaces/Abstimmung'
 import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
+import type { User } from '@/interfaces/User'
 import router from '@/router'
 import { mande } from 'mande'
 import { defineStore } from 'pinia'
@@ -17,35 +18,36 @@ const abstimmungen = mande(`${baseUrl}/admin/abstimmung`)
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
-    isLoggedin: boolean
+    user: { isLoggedin: false } | { isLoggedin: true; user: User }
     abstimmungen: Abstimmung[]
     lehrerData: Lehrer[]
   } => ({
-    isLoggedin: false,
+    user: { isLoggedin: false },
     abstimmungen: [],
     lehrerData: [],
   }),
   actions: {
-    async login() {
-      this.isLoggedin = true
+    async login(user: User) {
+      this.user = { isLoggedin: true, user }
     },
     async logout() {
       await fetch(`${baseUrl}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
       })
-      this.isLoggedin = false
+      this.user = { isLoggedin: false }
       router.push('/login')
     },
     async checkLogin() {
       const res = await fetch(`${baseUrl}/auth/ping`, {
         credentials: 'include',
       })
+      const { user } = await res.json()
 
       if (res.status === 200) {
-        this.isLoggedin = true
+        this.user = { isLoggedin: true, user }
       } else {
-        this.isLoggedin = false
+        this.user = { isLoggedin: false }
       }
     },
 

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import ClRegisterButton from '@/components/admin/ClRegisterButton.vue'
-import { useAdminStore } from '@/stores/admin'
 import { ref } from 'vue'
 
-const store = useAdminStore()
 const error = ref('')
 const username = ref('') // Neuer Ref für den Benutzernamen
 </script>
@@ -14,12 +12,13 @@ const username = ref('') // Neuer Ref für den Benutzernamen
       <h1>Register</h1>
       <div class="center">
         <input type="text" v-model="username" placeholder="Username" />
-        <ClRegisterButton :username="username" v-on:error-msg="(type, msg) => (error = msg)" />
+        <ClRegisterButton :username="username" v-on:error-msg="(type, msg) => (error = msg)"
+          >Register</ClRegisterButton
+        >
         <p id="error" class="text-red-500">{{ error }}</p>
       </div>
       <p>
-        <router-link to="/login">Switch to <span class="underlined">Login</span></router-link> or:
-        <button @click="store.logout"><span class="underlined">logout</span></button>
+        <router-link to="/login">Switch to <span class="underlined">Login</span></router-link>
       </p>
     </div>
   </main>

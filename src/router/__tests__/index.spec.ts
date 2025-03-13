@@ -34,7 +34,7 @@ describe('Router', () => {
   it('should resolve the admin route correctly', async () => {
     const adminStore = useAdminStore()
     vi.spyOn(adminStore, 'checkLogin').mockResolvedValue(undefined)
-    adminStore.isLoggedin = true // Simulate successful login
+    adminStore.user.isLoggedin = true // Simulate successful login
 
     await router.push('/admin')
     await router.isReady()

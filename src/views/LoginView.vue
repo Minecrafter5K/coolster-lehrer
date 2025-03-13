@@ -1,29 +1,44 @@
 <script setup lang="ts">
 import ClLoginButton from '@/components/admin/ClLoginButton.vue'
+import ClRegisterButton from '@/components/admin/ClRegisterButton.vue'
 import { useAdminStore } from '@/stores/admin'
 import { ref } from 'vue'
 
 const store = useAdminStore()
 const error = ref('')
 const username = ref('')
+
+store.checkLogin()
 </script>
 
 <template>
   <main class="center">
     <div class="container">
       <h1>Login</h1>
-      <div class="center">
+      <!-- logged in -->
+      <div v-if="store.user.isLoggedin">
+        <p>Hello {{ store.user.user.username }}!</p>
+        <button @click="store.logout"><span class="underlined">Logout</span></button>
+        or: <br />
+        <br />
+        <ClRegisterButton
+          :username="store.user.user.username"
+          v-on:error-msg="(type, msg) => (error = msg)"
+          >Register new Authenticator</ClRegisterButton
+        >
+        <p id="error" class="text-red-500">{{ error }}</p>
+      </div>
+      <!-- logged out -->
+      <div v-else>
         <input type="text" v-model="username" placeholder="Username" />
         <ClLoginButton :username="username" v-on:error-msg="(type, msg) => (error = msg)" />
         <p id="error" class="text-red-500">{{ error }}</p>
+        <p>
+          <router-link to="/register"
+            >Switch to <span class="underlined">Registration</span></router-link
+          >
+        </p>
       </div>
-      <p>
-        <router-link to="/register"
-          >Switch to <span class="underlined">Registration</span></router-link
-        >
-        or:
-        <button @click="store.logout"><span class="underlined">logout</span></button>
-      </p>
     </div>
   </main>
 </template>
@@ -59,6 +74,7 @@ h1 {
   text-decoration: underline;
 }
 
+#register,
 #login {
   background-color: var(--cl-green);
 

@@ -27,8 +27,7 @@ async function login() {
   })
 
   const resBody = await resp.json()
-
-  const { opts, userId } = resBody
+  const { opts, userId, username } = resBody
 
   let asseResp
   try {
@@ -52,7 +51,7 @@ async function login() {
   const verificationJSON = await verificationResp.json()
   console.log('Server Response', JSON.stringify(verificationJSON, null, 2))
   if (verificationJSON && verificationJSON.verified) {
-    adminStore.login()
+    adminStore.login({ id: userId, username })
     console.log('Authentication successful!')
   } else {
     emit('errorMsg', 'authError', 'Authentication failed')

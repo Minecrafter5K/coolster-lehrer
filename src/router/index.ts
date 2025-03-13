@@ -33,7 +33,7 @@ const router = createRouter({
         const store = useAdminStore()
         await store.checkLogin()
 
-        if (store.isLoggedin) return true
+        if (store.user.isLoggedin) return true
         return false
       },
     },
