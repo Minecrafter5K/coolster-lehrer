@@ -51,7 +51,7 @@ async function login() {
   const verificationJSON = await verificationResp.json()
   console.log('Server Response', JSON.stringify(verificationJSON, null, 2))
   if (verificationJSON && verificationJSON.verified) {
-    adminStore.login({ id: userId, username })
+    adminStore.login({ userId: userId, username })
     console.log('Authentication successful!')
   } else {
     emit('errorMsg', 'authError', 'Authentication failed')

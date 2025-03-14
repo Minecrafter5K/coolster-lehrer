@@ -2,16 +2,9 @@
 import { useAdminStore } from '@/stores/admin'
 import { startRegistration } from '@simplewebauthn/browser'
 
-const props = defineProps<
-  | {
-      username: string
-      userId?: never
-    }
-  | {
-      userId: string
-      username?: never
-    }
->()
+const props = defineProps<{
+  username?: string
+}>()
 
 const emit = defineEmits<{
   (e: 'errorMsg', type: 'authError', msg: string): void
@@ -30,7 +23,11 @@ async function register() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(props.userId ? { userId: props.userId } : { username: props.username }),
+    body: JSON.stringify(
+      adminStore.user.isLoggedin
+        ? { userId: adminStore.user.user.userId }
+        : { username: props.username },
+    ),
   })
 
   const resBody = await resp.json()
@@ -66,7 +63,7 @@ async function register() {
   console.log('Server Response', JSON.stringify(verificationJSON, null, 2))
 
   if (verificationJSON && verificationJSON.verified) {
-    adminStore.login({ id: userId, username })
+    adminStore.login({ userId: userId, username })
     console.log('Registration successful!')
   } else {
     emit('errorMsg', 'authError', 'Registration failed')
