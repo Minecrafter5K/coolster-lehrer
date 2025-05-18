@@ -2,19 +2,9 @@ import type { Abstimmung } from '@/interfaces/Abstimmung'
 import type { Lehrer, LehrerWithoutId } from '@/interfaces/Lehrer'
 import type { User } from '@/interfaces/User'
 import router from '@/router'
-import { mande } from 'mande'
 import { defineStore } from 'pinia'
 
 const baseUrl = import.meta.env.VITE_API_URL
-
-const allAbstimmungen = mande(`${baseUrl}/votes/abstimmungen`)
-const allLehrer = mande(`${baseUrl}/lehrer`)
-
-const createAbstimmung = mande(`${baseUrl}/admin/createAbstimmung`)
-const createLehrer = mande(`${baseUrl}/admin/createLehrer`)
-
-const lehrer = mande(`${baseUrl}/admin/lehrer`)
-const abstimmungen = mande(`${baseUrl}/admin/abstimmung`)
 
 export const useAdminStore = defineStore('admin', {
   state: (): {
@@ -52,27 +42,45 @@ export const useAdminStore = defineStore('admin', {
     },
 
     async fetchAbstimmungen() {
-      this.abstimmungen = await allAbstimmungen.get()
+      const res = await fetch(`${baseUrl}/votes/abstimmungen`, { credentials: 'include' })
+      this.abstimmungen = await res.json()
     },
     async fetchLehrer() {
-      this.lehrerData = await allLehrer.get()
+      const res = await fetch(`${baseUrl}/lehrer`, { credentials: 'include' })
+      this.lehrerData = await res.json()
     },
 
     async createAbstimmung(abstimmung: Abstimmung) {
-      await createAbstimmung.post(abstimmung)
+      await fetch(`${baseUrl}/admin/createAbstimmung`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(abstimmung),
+        credentials: 'include',
+      })
       await this.fetchAbstimmungen()
     },
     async createLehrer(lehrer: LehrerWithoutId) {
-      await createLehrer.post(lehrer)
+      await fetch(`${baseUrl}/admin/createLehrer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lehrer),
+        credentials: 'include',
+      })
       await this.fetchLehrer()
     },
 
     async deleteAbstimmung(id: number) {
-      await abstimmungen.delete(id)
+      await fetch(`${baseUrl}/admin/abstimmung/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
       await this.fetchAbstimmungen()
     },
     async deleteLehrer(id: number) {
-      await lehrer.delete(id)
+      await fetch(`${baseUrl}/admin/lehrer/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
       await this.fetchLehrer()
     },
   },

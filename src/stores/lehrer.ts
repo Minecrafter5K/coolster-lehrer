@@ -1,18 +1,9 @@
 import { defineStore } from 'pinia'
-import { mande } from 'mande'
 import type { Lehrer, LehrerWithScore } from '@/interfaces/Lehrer.ts'
 import type { Vote } from '@/interfaces/Vote.ts'
 import type { Abstimmung, AbstimmungDetail } from '@/interfaces/Abstimmung'
 import { ref } from 'vue'
-
 const baseUrl = import.meta.env.VITE_API_URL
-
-const lehrerApi = mande(`${baseUrl}/lehrer`)
-const abstimmungenDetailApi = mande(`${baseUrl}/votes/abstimmungen/detail`)
-
-const currentAbstimmungApi = mande(`${baseUrl}/votes/currentAbstimmung`)
-const lehrerRankApi = mande(`${baseUrl}/votes/rank`)
-const bulkCreateVotesApi = mande(`${baseUrl}/votes/bulk`)
 
 export const useLehrerStore = defineStore('lehrer', () => {
   const lehrerData = ref<Lehrer[]>([])
@@ -21,21 +12,31 @@ export const useLehrerStore = defineStore('lehrer', () => {
   const currentAbstimmung = ref<Abstimmung>()
 
   const fetchLehrer = async () => {
-    lehrerData.value = await lehrerApi.get()
+    const res = await fetch(`${baseUrl}/lehrer`)
+    lehrerData.value = await res.json()
   }
+
   async function fetchCurrentAbstimmungId() {
-    currentAbstimmung.value = await currentAbstimmungApi.get()
+    const res = await fetch(`${baseUrl}/votes/currentAbstimmung`)
+    currentAbstimmung.value = await res.json()
   }
   async function fetchLehrerRanking(abstimmungId: number) {
-    lehrerRanking.value = await lehrerRankApi.get(String(abstimmungId))
+    const res = await fetch(`${baseUrl}/votes/rank/${abstimmungId}`)
+    lehrerRanking.value = await res.json()
   }
   async function fetchAbstimmungenDetail() {
-    abstimmungenDetail.value = await abstimmungenDetailApi.get()
+    const res = await fetch(`${baseUrl}/votes/abstimmungen/detail`)
+    abstimmungenDetail.value = await res.json()
     abstimmungenDetail.value.reverse()
   }
 
   async function createVotes(votes: Vote[]) {
-    await bulkCreateVotesApi.post(votes)
+    await fetch(`${baseUrl}/votes/bulk`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(votes),
+    })
   }
 
   return {

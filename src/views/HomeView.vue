@@ -25,6 +25,7 @@ function updateVoteValue(id: number, value: number) {
 }
 
 const submitVotes = async () => {
+  loading.value = true
   const newVotes: Vote[] = votes.value
     .filter((vote) => vote.score !== 0)
     .map((vote) => ({
@@ -32,10 +33,7 @@ const submitVotes = async () => {
       vote: vote.score,
       abstimmungId: store.currentAbstimmung!.id!,
     }))
-  console.log('newVotes')
   await store.createVotes(newVotes)
-  console.log('votes created')
-  loading.value = true
   await router.push('/stats')
 }
 </script>
