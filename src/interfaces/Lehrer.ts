@@ -12,6 +12,7 @@ export interface LehrerWithoutId {
 export interface LehrerWithScore {
   id: number
   name: string
+  photo_id: number | undefined
   score: number
   rank: number
 }

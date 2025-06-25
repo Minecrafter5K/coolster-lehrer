@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Lehrer } from '@/interfaces/Lehrer'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useAdminStore } from '@/stores/admin'
 
 // props & admin store

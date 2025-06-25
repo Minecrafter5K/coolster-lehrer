@@ -15,6 +15,7 @@ const votes = computed(() =>
   store.lehrerData.map((lehrer) => ({
     id: lehrer.id,
     name: lehrer.name,
+    photo_id: lehrer.photo_id,
     score: 0,
   })),
 )
