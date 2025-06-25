@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import type { LehrerWithScore } from '@/interfaces/Lehrer.ts'
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 
 const props = defineProps<{ lehrer: LehrerWithScore }>()
 
 const rank = computed(() => 'rank-' + props.lehrer.rank)
 
-// pfp
-const imageUrl = computed(() => `/pfps/${props.lehrer.name}.png`)
-
-const setFallback = (event: Event) => {
-  ;(event.target as HTMLImageElement).src = '/pfps/blank_pfp.png'
-}
+// pfp: default and API-loaded image
+const imageSrc = ref<string>(`/pfps/blank_pfp.png`)
+onMounted(async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_API_URL
+    const res = await fetch(`${baseUrl}/lehrer/${props.lehrer.id}/photo`)
+    if (res.ok) {
+      imageSrc.value = `data:image/png;base64,${await res.text()}`
+    }
+  } catch {}
+})
 </script>
 
 <template>
   <div class="p_light_background" v-bind:class="rank">
-    <img :src="imageUrl" @error="setFallback" alt="profile picture" />
+    <img :src="imageSrc" alt="profile picture" />
     <div class="p_dark" v-bind:class="rank">
       <h2>{{ props.lehrer.name }}</h2>
       <div class="p_light_line" v-bind:class="rank"></div>
@@ -49,6 +54,7 @@ img {
   position: absolute;
   width: 180px;
   height: 180px;
+  object-fit: cover;
 
   top: 40px;
   left: 50px;

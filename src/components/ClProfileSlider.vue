@@ -1,24 +1,29 @@
 <script setup lang="ts">
 import ClSlider from './ClSlider.vue'
 import type { Lehrer } from '@/interfaces/Lehrer.ts'
-import { computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const props = defineProps<{ lehrer: Lehrer; voteValue: number }>()
 const emit = defineEmits<{
   (e: 'update:voteValue', value: number): void
 }>()
 
-// pfp
-const imageUrl = computed(() => `/pfps/${props.lehrer.name}.png`)
-
-const setFallback = (event: Event) => {
-  ;(event.target as HTMLImageElement).src = '/pfps/blank_pfp.png'
-}
+// pfp: default and API-loaded image
+const imageSrc = ref<string>(`/pfps/blank_pfp.png`)
+onMounted(async () => {
+  try {
+    const baseUrl = import.meta.env.VITE_API_URL
+    const res = await fetch(`${baseUrl}/lehrer/${props.lehrer.id}/photo`)
+    if (res.ok) {
+      imageSrc.value = `data:image/png;base64,${await res.text()}`
+    }
+  } catch {}
+})
 </script>
 
 <template>
   <div class="p_light_background">
-    <img :src="imageUrl" @error="setFallback" alt="profile picture" />
+    <img :src="imageSrc" alt="profile picture" />
     <div class="p_dark">
       <h2>{{ props.lehrer.name }}</h2>
       <div class="p_light_line"></div>
@@ -45,6 +50,7 @@ img {
   position: absolute;
   width: 180px;
   height: 180px;
+  object-fit: cover;
 
   top: 40px;
   left: 50px;

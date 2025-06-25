@@ -83,5 +83,21 @@ export const useAdminStore = defineStore('admin', {
       })
       await this.fetchLehrer()
     },
+    async uploadLehrerPhoto(id: number, photoBase64: string) {
+      await fetch(`${baseUrl}/admin/lehrer/${id}/photo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ photo: photoBase64 }),
+        credentials: 'include',
+      })
+      await this.fetchLehrer()
+    },
+    async deleteLehrerPhoto(id: number) {
+      await fetch(`${baseUrl}/admin/lehrer/${id}/photo`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+      await this.fetchLehrer()
+    },
   },
 })
